@@ -1,6 +1,18 @@
 import "./Login.scss";
+import { useState, useContext } from "react";
+import { AuthContext } from "../../authContext/AuthContext.js";
+import { login } from "../../authContext/apiCalls.js";
 
 const Login = () => {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const { dispatch } = useContext(AuthContext);
+
+    const handleLogin = (e) => {
+        e.preventDefault();
+        login({ email, password }, dispatch);
+    };
+
     return (
         <div className="login">
             <div className="top">
@@ -18,12 +30,14 @@ const Login = () => {
                     <input
                         type="email"
                         placeholder="Email or phone number"
+                        onChange={(e) => setEmail(e.target.value)}
                     />
                     <input
                         type="password"
                         placeholder="Password"
+                        onChange={(e) => setPassword(e.target.value)}
                     />
-                    <button className="loginButton">
+                    <button className="loginButton" onClick={handleLogin}>
                         Sign In
                     </button>
                     <span>

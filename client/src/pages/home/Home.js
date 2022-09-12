@@ -16,7 +16,7 @@ const Home = ({ type }) => {
                 await axios.get(
                     `/lists${type ? "?type=" + type : ""}${genre ? "&genre=" + genre : ""}`, {
                     headers: {
-                        token: "Berear eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzMWIwNDE1ODAyNTU3OTY4ZWFjODlhYiIsImlzQWRtaW4iOnRydWUsImlhdCI6MTY2MjcxNjE0MiwiZXhwIjoxNjYzMTQ4MTQyfQ.hu401pMev3rUuQuMsSnUQmWbE2xh7d4S3FTntZM5-Bk"
+                        token: "Berear " + JSON.parse(localStorage.getItem("user")).accessToken,
                     }
                 }
                 ).then(res => setList(res.data));
